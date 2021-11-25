@@ -1,0 +1,132 @@
+10.198.107.93
+
+10.50.145.66
+34.66.46.29
+
+http://10.54.2.61:8081/api/healthcheck
+
+http://10.54.2.33:8081/api/healthcheck
+
+
+
+Hi Andy,
+Is connectivity between UTIT to GCP dev is working ?
+I tried to ping IP of gcp dev pod, ping 10.54.128.71 from jump box. I am not able to ping it.
+This is the BOSS DEV m5db IP , 10.23.173.9 this has be connected to from my new gcp dev 10.54.128.71
+
+
+docker tag eventpropagatorservice.eventpropagatorapi gcr.io/voko-na-cmnsvc-3b45cd7e/boss/eventpropagatorservice/eventpropagatorapi:$ver
+
+docker tag eventpropagatorservice.eventpropagatorapi gcr.io/bossdb-setup/boss/eventpropagatorservice/eventpropagatorapi:80.1.69.944380
+docker tag gcr.io/voko-na-cmnsvc-3b45cd7e/boss/eventpropagatorservice/eventpropagatorapi registry2.mci01.ops.corvisa.net/boss/eventpropagatorservice/eventpropagatorapi:20.04.194.946300
+
+docker push gcr.io/voko-na-cmnsvc-3b45cd7e/boss/eventpropagatorservice/eventpropagatorapi:
+gcr.io/bossdb-setup/boss/eventpropagatorservice/eventpropagatorapi:80.1.69.944380
+
+docker tag gcr.io/bossdb-setup/boss/eventpropagatorservice/eventpropagatorapi:20.04.194.946300 registry2.mci01.ops.corvisa.net/boss/eventpropagatorservice/eventpropagatorapi:20.04.194.946300
+docker pull registry2.mci01.ops.corvisa.net/boss/eventpropagatorservice/eventpropagatorapi:20.04.194.946300@sha256:49f8a4ea20688080a8ef9752eca368fa2731be680f805bc08c5fb00548291f53
+gcloud container clusters get-credentials "cas-dev" --region us-central1 --project "voko-na-dev-k8s-f85b53f9"
+
+kubectl exec -it event-propagator-57f9cd7f55-2h9jh -n servicedelivery-dev -- /bin/sh
+servicedelivery-dev
+
+kubectl exec -it <podname> -n <namespace> -- /bin/sh
+
+
+curl -kv http://10.54.128.74/api/System/Health
+curl -kv http://10.54.128.74/api/HealthCheck
+
+curl -kv http://10.54.128.73/api/System/Health
+curl -kv http://10.54.128.73/api/HealthCheck
+ 
+curl -kv http://10.54.128.72/api/System/Health
+curl -kv http://10.54.128.72/api/HealthCheck
+  
+curl -kv http://10.54.128.71/api/System/Health
+curl -kv http://10.54.128.71/api/HealthCheck
+  
+  
+  rm ~/.kube/cas-dev
+  kubectl get namespaces
+
+  kubectl config current-context
+  ls -ltr ~/.kube
+  export CLUSTER=cas-dev
+  kubectl logs pod-name
+  
+  kubectl exec -it event-propagator-87d946957-pbhlk -n servicedelivery-dev -- /bin/sh
+  kubectl describe pod event-propagator-7f75c7c88c-9jzv7 --event-propagator-7f75c7c88c-gxwz8
+  event-propagator-7f75c7c88c-9jzv7
+  
+   kubectl --namespace=servicedelivery-dev get hpa
+  use restart policy - restartPolicy 
+  
+  Switch to my new context:
+  kubectl config set-context gke_voko-na-dev-k8s-f85b53f9_us-central1_cas-dev --namespace servicedelivery-dev
+  
+  kubectl get pods --all-namespaces |grep -i event-propagator
+  kubectl get pods --all-namespaces |grep -i servicedelivery-dev
+  
+  kubectl get deployments --all-namespaces |grep -i event-propagator
+  
+  curl -kv http://10.54.128.74/api/HealthCheck
+  
+  kubectl scale deployment event-propagator --replicas=0 -n servicedelivery-sandbox
+   kubectl get pods --all-namespaces -o wide |grep -i event-propagator
+   
+   
+   kubectl --namespace=servicedelivery-dev edit secret
+   kubectl edit configmaps --namespace=servicedelivery-dev
+   
+   eacho -n "RGF0YSBTb3VyY2U9MTAuMjMuMTczLjk7SW5pdGlhbCBDYXRhbG9nPW01ZGI7UGVyc2lzdCBTZWN1cml0eSBJbmZvPVRydWU7VXNlciBJRD1hcHBfc3lzdGVtbG9nO3Bhc3N3b3JkPTJydU5BcHAkOw==" | base64 --decode
+   
+   kubectl --namespace=servicedelivery-dev get secret
+   
+   kubectl rollout restart -n <namespace> deployment <name>
+   kubectl rollout restart -n servicedelivery-dev deployment event-propagator
+   
+   HTTP GET failed: 403 Forbidden https://authentication.dev.api.mitel.io/2017-09-01/identityProviders/v1/Settings/tenant/13821?region=uce-us&globalUserId=38e63e39-0687-4498-8ed3-0189dca307b6&domainId=a9208e58-d968-40f9-a4b5-a1d66bad787e&username=defaultPartnerDirectAccuser1@mitel-test.com&IsStaff=False&IsDecisionMaker=True&IsPhoneManager=True
+   
+   
+   kubectl --namespace=servicedelivery-dev edit deployment
+   
+   gcloud container clusters get-credentials cas-dev-au --zone australia-southeast1 --project au-dev-k8s-01
+   
+   kubectl config set-context --current --namespace=servicedelivery-dev
+   
+   
+   
+
+
+
+use m5db_log;
+
+select count(datecreated),cast(datecreated as date)
+ from systemlog with(nolock) 
+where 
+origin = 'M5.Mantle.Propagators.UnifiedCloudPropagation.PostJson'
+
+and loglevel ='error' and 
+id between 1351269191 and 1361579191
+group by cast(datecreated as date)
+order by cast(datecreated as date) desc
+
+
+https://portal.sit.shoretel.com/Person/TabPagePersonDetailsPermissionsAndRoles?&accountId=17025&locationId=-1&personId=1003917&partitionId=14085&_=1594789515716
+https://portal.sit.shoretel.com/Person/TabPagePersonNotificationCategory?&accountId=17025&locationId=-1&personId=1003917&partitionId=14085&_=1594789515717
+testuser12.july@miteltest.com
+
+
+
+document to have the detials of steps.
+load balanced for EP in perf/test/dev
+stack driver.
+
+
+
+Get the response time.
+
+instal newrelic agent/ any tool to measure the cpu,
+
+-- Get the pods metrics
+kubectl top pod event-propagator-766c76856b-lqb4f --namespace=servicedelivery-dev
