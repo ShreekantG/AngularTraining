@@ -1,0 +1,15 @@
+<div
+  [class]="bgColor"
+  [ngClass]="{ 'text-white': isColorEnabled }"
+  appShadowEffect
+>
+  <!-- SLOTS -->
+  <ng-content select="img"></ng-content>
+  <div class="card-header">
+    <ng-content select="h3"></ng-content>
+  </div>
+  <!-- CONTENT PROJECTION -->
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+</div>

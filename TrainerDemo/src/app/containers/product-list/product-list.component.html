@@ -1,0 +1,10 @@
+<div appRow *ngIf="currencyService.currencyObservable | async as currencyCode">
+  <div *ngFor="let item of pList | slice: 11:20" [appColumn]="3">
+    <app-product
+      [code]="currencyCode"
+      [data]="item"
+      (btnClick)="addToCart($event)"
+    ></app-product>
+  </div>
+</div>
+<!-- <app-product [data]="pList" [wishlist]="true"></app-product> -->

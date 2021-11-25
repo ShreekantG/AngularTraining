@@ -1,0 +1,3 @@
+<select (change)="changeCurrency($event)" class="form-control-sm">
+  <option [value]="code" *ngFor="let code of currencyCodes">{{ code }}</option>
+</select>

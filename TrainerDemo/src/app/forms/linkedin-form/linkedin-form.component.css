@@ -1,0 +1,6 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid var(--bs-danger);
+}
+.fa-linkedin {
+  color: rgb(10, 102, 194);
+}

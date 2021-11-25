@@ -1,0 +1,18 @@
+<div appRow>
+  <div class="my-2" [appColumn]="12">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search Repositories..."
+      [formControl]="search"
+    />
+  </div>
+  <div class="my-2" [appColumn]="12">
+    <app-card *ngFor="let repo of repositories">
+      <div class="d-flex align-items-center justify-content-between">
+        <span>{{ repo?.name }}</span>
+        <a [href]="repo?.downloads_url" target="_blank">View Repo</a>
+      </div>
+    </app-card>
+  </div>
+</div>

@@ -1,0 +1,326 @@
+Angular Tools
+1. Angular CLI : npm install @angular/cli -g
+2. Angular language service : VS Code extension
+3. Angular devtools : debugger
+
+npm install @angular/cli@11.2.14 -g
+
+ng version
+
+ng new my-app
+Routing : No
+Css
+
+cd my-app
+ng serve -o
+
+2 : rewrite of framework
+4 : minor change to http services
+6 : architectural change
+9 : ivy compiler
+
+Typescript
+1. compile time checks : data type specificity
+2. object oriented
+
+Angular development
+1. creation : creating a functionality/feature
+2. registration : it is a way of conveying angulars environment, that this feature needs to be included in the build
+3. consumption : using the feature/functionality created
+
+ANGULAR CORE
+1. Components :
+    user defined html tags
+    <p></p>
+    <test></test>
+
+2. Directives :
+    user defined html attributes
+    <p id="" test=""></p>
+    used to enhance/extend the functionality of the existing components/html tags
+
+3. Pipes :
+    data transformation/data formatting
+
+4. Services :
+    - http requests/calls
+    - business logic
+    - data sharing/session/state management
+
+Angular : SPA : single page application
+index.html
+main.ts
+app.module.ts
+app.component.ts
+
+@Decorator : ts
+it is used to provide the meta data to a class
+
+*.component.ts      : controller, variables declared in the file are your model variables
+*.component.html    : view
+*.component.css     : component specific styles
+*.component.spec.ts : unit testing file
+
+ng g component name-of-component
+     directive
+     pipe
+     service
+     class
+     module
+     guard
+     interceptor
+
+ng g component demo
+
+VS Code extensions
+error-lens
+bracket-pair colorizer 2
+auto close tag
+auto rename tag
+path intellisense
+rainbow indent
+prettier
+visual studio intellicode
+code spell checker
+
+Components
+1. smallest reusable entity
+2. SRP
+
+ng g component components/product
+
+Product
+- display one single unit of information
+  - how the data should be displayed
+  - should the text of the button be displayed as add to cart/wishlist
+  - should the button be displayed or not
+  - whenever the button is clicked, it should notify the parent component about the click event
+
+- fetch data logic
+- add to cart
+- add to wishlist
+- no button
+
+Page 1 : add to cart
+  Product : notify
+
+Page 2 : add to wishlist
+  Product :
+
+
+REUSEABILITY : use it as is
+
+DESIGN PATTERN
+SMART : logical : containers
+DUMB  : presentation : components
+
+SMART : fetch the data, pass on the data to dumb component : logical
+    DUMB : collect the data received & display it. : presentation
+
+App
+    Currency : selected data
+    ProductList : pList
+            Product : productData : used
+
+PARENT <=> CHILD
+PARENT TO CHILD : @Input property
+CHILD TO PARENT : @Output event
+
+Currency => App => ProductList => Product
+
+ng g component components/currency
+
+server : i/o ops
+client : manipulation of dom/rendering
+
+
+PIPES
+data transformation/data formatting
+always transform only the displayed data
+
+input_data | functionality : param1 : param2....
+
+takes an input_data & transforms/formats the data provided by the functionality
+
+uppercase, lowercase, titlecase
+decimal
+currency
+date
+
+Chain pipes
+input | pipe1 | pipe2 | pipe3
+
+ng g pipe pipes/conversion
+price | conversion | currency
+
+Directives
+
+<img src="main.jpg" />
+
+<img src="default.jpg" />
+
+ng g directive directives/img-fallback
+
+Wrapper component : UI components
+
+<p>Test</p>
+<h2>Test</h2>
+<test>TEST</test>
+ng g component components/card
+
+
+FORMS : @angular/forms
+Template Driven : FormsModule
+Model Driven/Reactive forms : ReactiveFormsModule : recommended
+
+FORM STATE : form/field
+valid & invalid :
+checking whether the data is valid/invalid
+
+touched & untouched :
+whenever a field is visited/focused, form/field is claimed to be touched
+
+dirty & pristine :
+whenever a field value is changed, form/field is claimed to be dirty
+
+errors :
+this helps in evaluating which error has occurred
+
+ng g component forms/model-driven
+
+
+Validations
+errors : null : all validations are satisfied
+errors : object : containing the error information
+
+required
+minlength
+maxlength
+min
+max
+email
+pattern
+
+Model Driven :
+define model structure : form structure
+
+{ : FormGroup
+  name:'', : FormControl
+  email:''
+}
+
+ng g directive forms/email-validator
+
+ng g directive forms/mark-asterisk
+
+ng g component forms/show-errors
+
+Dynamic Forms
+
+{
+  name:'',
+  email:'',
+  experience:[
+    {organization:'',position:'',noofyrs:''},
+    {organization:'',position:'',noofyrs:''}
+  ]
+}
+
+ng g component forms/linkedin-form
+
+LIFECYCLE : components/directives
+constructor : executes once/instance
+initializing variables, dependency injection
+
+ngOnChanges : executes on every @Input value change
+performing logical tasks on value changes of input variables
+it internally calls ngDoCheck
+
+ngOnInit : executes once/instance : after ts loaded
+used to perform on load related tasks
+
+ngOnDestroy : executes once/instance : unload
+used to dispose objects, unsubscribe from services
+
+ngAfterViewInit : executes after the html has loaded
+
+
+ng g directive directives/row
+ng g directive directives/column
+ng g directive directives/shadow-effect
+
+SERVICES
+@angular/common/http : HttpClientModule
+
+1. Promise    : JS
+2. Observable : RxJs (recommended)
+
+Observable
+1. architecture of angular is on RxJs
+
+Search
+keypress => request => response => suggestion
+
+ANGULAR :
+7 : 1
+
+1. debounce : adding a delay : 300-500ms
+2. wait time : cancellation
+3. retry
+4. PUB SUB
+
+- HOT Observable  : instant updates : data sharing
+- COLD Observable : one time information : http services
+
+ng g service services/product
+
+global  : app.module.ts : singleton pattern
+local   : *.component.ts/*.directive.ts : new instance gets created every time : http services
+
+MODULE
+Features
+  component
+  containers
+  directive
+  services
+  pipes
+
+Keep your app.module.ts as lean as possible
+
+ng g module ui
+ng g component ui/components/header
+ng g component ui/components/footer
+
+ROUTER : SPA
+@angular/router : RouterModule
+
+App
+  Static : Header,footer, menu
+  Dynamic : ROUTER
+
+ng g module app-routing --flat
+ng g component components/error-page
+
+/forms/template
+/forms/model
+/forms/linkedin
+
+ng g service services/currency
+
+always keep your app component away from any kind of resposibilities
+app responsibility is to define the layout
+
+
+Currency  : appmodule => uimodule
+Header    : uimodule => appmodule
+
+
+unsubscribe
+1. take the subscription object & destroy the subscription
+2. async pipe : automatically subscribe/unsubscribe
+3. 3rd party library :
+    - https://www.npmjs.com/package/subsink
+    - https://www.npmjs.com/package/@ngneat/until-destroy
+
+ng g component containers/github-search
+ng g service services/search

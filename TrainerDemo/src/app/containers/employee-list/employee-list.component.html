@@ -1,0 +1,4 @@
+<button (click)="addEmployee()">Add</button>
+<ul>
+  <li *ngFor="let emp of employees; trackBy: trackById">{{ emp.name }}</li>
+</ul>

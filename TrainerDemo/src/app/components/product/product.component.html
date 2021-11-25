@@ -1,0 +1,28 @@
+<app-card>
+  <img [src]="productData.productImage" appImgFallback class="img-responsive" />
+  <!-- <img
+    [src]="productData.productImage"
+    appImgFallback="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+  /> -->
+  <!-- <img [src]="productData.productImage" [appImgFallback]="defaultImage" /> -->
+
+  <h3 class="fw-light text-center fs-4">
+    {{ productData.productName | uppercase }}
+  </h3>
+  <h5 class="fw-light text-center fs-5">
+    {{ productData.productPrice | conversion: code }}
+  </h5>
+  <button
+    appShadowEffect
+    class="btn btn-sm btn-primary w-100"
+    (click)="notifyParent()"
+    *ngIf="productData.productStock; else nostock"
+  >
+    Add to {{ btnText }}
+  </button>
+  <!-- <button>Add to Wishlist</button> -->
+</app-card>
+<!-- id : identifier, #ref : TemplateRef => document.getElementById('id') -->
+<ng-template #nostock>
+  <button class="btn btn-sm btn-danger w-100" disabled>Out of Stock</button>
+</ng-template>
